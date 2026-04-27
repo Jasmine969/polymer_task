@@ -1,0 +1,37 @@
+; NVT Production (>= 10 ns)
+; ============================
+integrator              = md
+nsteps                 = 5000000      ; 10 ns (dt = 2 fs)
+dt                     = 0.002        ; 2 fs
+
+; Output
+nstxout               = 0            ; don't save coords every step (too large)
+nstvout               = 0
+nstfout               = 0
+nstlog                = 10000        ; every 20 ps
+nstenergy             = 10000
+nstxout-compressed    = 5000         ; every 10 ps (compressed .xtc)
+compressed-x-precision = 1000
+
+; Bond constraints
+constraint_algorithm    = lincs
+constraints            = h-bonds
+lincs_iter            = 1
+lincs_order            = 4
+
+; Electrostatics & van der Waals
+cutoff-scheme         = Verlet
+coulombtype          = PME
+rcoulomb             = 1.2
+rvdw                 = 1.2
+vdwtype              = Cut-off
+DispCorr             = EnerPres
+
+; Temperature coupling
+tcoupl               = V-rescale
+tc-grps              = SPEEK  SOL
+tau_t                = 0.1    0.1
+ref_t                = 300     300
+
+; Pressure (NVT: no pressure coupling)
+pcoupl               = no

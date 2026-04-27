@@ -1,0 +1,40 @@
+; NPT Equilibration (100 ps)
+; ============================
+integrator              = md
+nsteps                 = 50000        ; 100 ps (dt = 2 fs)
+dt                     = 0.002        ; 2 fs
+
+; Output
+nstxout               = 0
+nstvout               = 0
+nstfout               = 0
+nstlog                = 1000
+nstenergy             = 1000
+
+; Bond constraints
+constraint_algorithm    = lincs
+constraints            = h-bonds
+lincs_iter            = 1
+lincs_order            = 4
+
+; Electrostatics & van der Waals
+cutoff-scheme         = Verlet
+coulombtype          = PME
+rcoulomb             = 1.2
+rvdw                 = 1.2
+vdwtype              = Cut-off
+DispCorr             = EnerPres
+
+; Temperature coupling
+tcoupl               = V-rescale
+tc-grps              = SPEEK  SOL
+tau_t                = 0.1    0.1
+ref_t                = 300     300
+
+; Pressure coupling
+pcoupl              = Parrinello-Rahman
+pcoupltype          = isotropic
+tau_p               = 2.0
+ref_p               = 1.0
+compressibility      = 4.5e-5
+refcoord_scaling    = com
