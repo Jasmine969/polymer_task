@@ -14,7 +14,7 @@ oh      oh            0.00000  0.00000   A      3.24287e-01   3.89112e-01
 ho      ho            0.00000  0.00000   A      5.37925e-02   1.96648e-02
 os      os            0.00000  0.00000   A      3.15610e-01   3.03758e-01
 
-#include "CLS_single.itp"
+#include "CLS_single_raw.itp"
 
 [ system ]
 CLS single chain

@@ -10,6 +10,7 @@ nstlog                  = 500
 nstenergy              = 500
 
 ; Interruption handling
+controller              = horizon
 continuation           = no
 
 ; Bond constraints

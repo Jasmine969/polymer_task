@@ -1,17 +1,17 @@
 ;
-;   File /mnt/f/polymer_task/single_chain/CLS_single_corrected.itp  was generated
+;   File /mnt/f/polymer_task/single_chain/CLS_single_raw.itp  was generated
 ;   By user: jasminefeng (1000)
 ;   On host:DESKTOP-EHK58OI 
-;   At date:Tue. April  2 11:31:32 2026 
+;   At date:Tue. April  2 11:30:29 2026 
 ;
 ;   This is a standalone topology file
 ;
 ;   Created by:
-;   ParmEd:       remove_hydrogen_hydrogen_bonds.py, VERSION4.3.1 
-;   Executable:   remove_hydrogen_hydrogen_bonds.py
+;   ParmEd:       extract_first_chain_itp.py, VERSION4.3.1 
+;   Executable:   extract_first_chain_itp.py
 ;   Library dir:  /usr/local/gromacs/share/gromacs/top
 ;   Command line:
-;     scripts/task2/remove_hydrogen_hydrogen_bonds.py
+;     scripts/task2/extract_first_chain_itp.py
 ;
 
 [ moleculetype ]
@@ -246,6 +246,7 @@ CLS             3
 [ bonds ]
 ;    ai     aj funct         c0         c1         c2         c3
       1      2     1   0.10970 314550.000000
+      1      9     1   0.10900 314550.000000
       2      4     1   0.15380 194560.000000
       2      5     1   0.15380 194560.000000
       2      8     1   0.10970 314550.000000
