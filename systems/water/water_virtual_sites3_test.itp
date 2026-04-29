@@ -1,0 +1,29 @@
+; Test copy of solvent/water.itp with [ virtualsite3 ] renamed to
+; [ virtual_sites3 ], the GROMACS 2022 directive spelling.
+
+[ atomtypes ]
+; name  mass     charge  ptype  sigma      epsilon
+  OW    15.9994   0.0   A   3.166e-01  6.506e-01
+  HW     1.0080   0.0   A   0.000e+00  0.000e+00
+
+[ moleculetype ]
+; name            nrexcl
+  SOL                 2
+
+[ atoms ]
+; nr  type  resnr  resname  atom  cgnr  charge      mass
+    1     OW      1     SOL     OW     1    -0.8476   15.9994
+    2     HW      1     SOL    HW1     1     0.4238    1.0080
+    3     HW      1     SOL    HW2     1     0.4238    1.0080
+
+[ settles ]
+; i  funct  doh     dhh
+  1     1     0.1000  0.1630
+
+[ angles ]
+; i  j  k  funct  theta  cth
+  2     1     3     1     109.47  383.0
+
+[ virtual_sites3 ]
+; i  j  k  l  funct  a     b
+  1     2     3     3     1     0.75640977  0.24359023

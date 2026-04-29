@@ -1,0 +1,15 @@
+; Test topology: use the original solvent/water.itp with directive order fixed.
+; The GAFF-only header is included first, then original water.itp contributes
+; OW/HW atomtypes and the SOL moleculetype before the CLS moleculetype appears.
+
+#include "forcefield_gaff_only_test.itp"
+#include "../../solvent/water.itp"
+#include "../../single_chain/CLS_single.itp"
+
+[ system ]
+CLS single chain in water, original water.itp with ordered includes
+
+[ molecules ]
+; Compound        #mols
+CLS             1
+SOL             1500

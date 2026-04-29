@@ -1,0 +1,14 @@
+; Test topology: original water.itp content but [ virtualsite3 ] renamed to
+; [ virtual_sites3 ]. Includes are ordered so water atomtypes appear before CLS.
+
+#include "forcefield_gaff_only_test.itp"
+#include "water_virtual_sites3_test.itp"
+#include "../../single_chain/CLS_single.itp"
+
+[ system ]
+CLS single chain in water, virtual_sites3 test
+
+[ molecules ]
+; Compound        #mols
+CLS             1
+SOL             1500

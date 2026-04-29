@@ -3,22 +3,25 @@
 This is a topology sanity check, not a full bond-order perception tool.
 GROMACS ITP files define bonded interactions but do not store explicit single,
 double, or aromatic bond orders. The checks here therefore use coordination
-counts only: H should have exactly 1 bond, O should not exceed 2 bonds, and C
-should not exceed 4 bonds.
+counts only: H should have exactly 1 bond, O should have 1 to 2 bonds, and C
+should have 2 to 4 bonds.
 """
 
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-INPUT_ITPS = (
-    ROOT / "single_chain" / "CLS_single_raw.itp",
-    ROOT / "single_chain" / "CLS_single_corrected.itp",
-)
+# ITP_PATH = ROOT / "single_chain" / "CLS_single_raw.itp"
+ITP_PATH = ROOT / "single_chain" / "CLS_single_corrected.itp"
 
 MAX_BONDS = {
     "C": 4,
     "O": 2,
+}
+
+MIN_BONDS = {
+    "C": 2,
+    "O": 1,
 }
 
 
@@ -78,16 +81,8 @@ def read_atoms_and_bonds(path: Path) -> tuple[dict[int, dict[str, str]], list[tu
 
 
 def main() -> None:
-    """Check the raw and corrected task-2 ITP files.
+    check_itp(ITP_PATH)
 
-    The task workflow uses fixed file names, so this script intentionally has
-    no command-line options. It reports the erroneous raw topology first and
-    then the corrected topology, making the before/after comparison explicit.
-    """
-    for index, itp_path in enumerate(INPUT_ITPS):
-        if index:
-            print()
-        check_itp(itp_path)
 
 
 def check_itp(itp_path: Path) -> None:
@@ -98,6 +93,9 @@ def check_itp(itp_path: Path) -> None:
     itp_path:
         ITP file to inspect. The output includes the number of atoms, the number
         of bonds, and any atoms that break the H/O/C coordination rules.
+        Carbon and oxygen are checked against both lower and upper coordination
+        limits because dangling C/O atoms are chemically suspicious even when
+        they do not exceed their maximum valence.
     """
     atoms, bonds = read_atoms_and_bonds(itp_path)
     adjacency = {atom_id: [] for atom_id in atoms}
@@ -118,6 +116,11 @@ def check_itp(itp_path: Path) -> None:
         if element == "H" and bond_count != 1:
             violations.append(
                 f"{atom_id:4d} {atom['name']:>4s} H has {bond_count} bonds -> {neighbors}"
+            )
+        elif element in MIN_BONDS and bond_count < MIN_BONDS[element]:
+            violations.append(
+                f"{atom_id:4d} {atom['name']:>4s} {element} has {bond_count} bonds "
+                f"(min {MIN_BONDS[element]}) -> {neighbors}"
             )
         elif element in MAX_BONDS and bond_count > MAX_BONDS[element]:
             violations.append(

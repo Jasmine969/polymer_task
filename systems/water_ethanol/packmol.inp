@@ -1,0 +1,20 @@
+tolerance 2.0
+filetype pdb
+output initial.pdb
+
+structure ../../single_chain/CLS_single_packmol.pdb
+  number 1
+  inside box 4.0 4.0 4.0 54.0 54.0 54.0
+end structure
+
+structure ../../solvent/water.pdb
+  number 1050
+  inside box 1.5 1.5 1.5 56.5 56.5 56.5
+end structure
+
+structure ../../solvent/ethanol.pdb
+  number 450
+  inside box 1.5 1.5 1.5 56.5 56.5 56.5
+end structure
+
+# Box length for later GRO conversion: 5.800 nm

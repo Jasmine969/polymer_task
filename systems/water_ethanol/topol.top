@@ -1,0 +1,15 @@
+; Topology for CLS single chain in water/ethanol mixed solvent.
+#include "../../solvent/forcefield_gaff_spce.itp"
+
+#include "../../single_chain/CLS_single.itp"
+#include "../../solvent/water_corrected.itp"
+#include "../../solvent/ethanol.itp"
+
+[ system ]
+CLS single chain in water/ethanol mixed solvent
+
+[ molecules ]
+; Compound        #mols
+CLS             1
+SOL             1050
+ETH             450

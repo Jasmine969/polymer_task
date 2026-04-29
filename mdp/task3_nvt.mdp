@@ -1,0 +1,40 @@
+; NVT Equilibration (100 ps)
+; ============================
+integrator              = md
+nsteps                 = 50000        ; 100 ps (dt = 2 fs)
+dt                     = 0.002        ; 2 fs
+
+; Output
+nstxout               = 0           ; no trajectory during eq
+nstvout               = 0
+nstfout               = 0
+nstlog                = 1000
+nstenergy             = 1000
+
+; Bond constraints
+constraint_algorithm    = lincs
+constraints            = h-bonds
+lincs_iter            = 1
+lincs_order            = 4
+
+; Electrostatics & van der Waals
+cutoff-scheme         = Verlet
+coulombtype          = PME
+rcoulomb             = 1.2
+rvdw                 = 1.2
+vdwtype              = Cut-off
+DispCorr             = EnerPres
+
+; Temperature coupling (V-rescale)
+tcoupl               = V-rescale
+tc-grps              = System
+tau_t                = 0.1
+ref_t                = 300
+
+; Pressure (no pressure coupling for NVT)
+pcoupl               = no
+
+; Velocity generation
+gen_vel              = yes
+gen_temp             = 300
+gen_seed             = -1

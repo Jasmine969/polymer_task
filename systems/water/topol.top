@@ -1,0 +1,13 @@
+; Topology for CLS single chain in water.
+#include "../../solvent/forcefield_gaff_spce.itp"
+
+#include "../../single_chain/CLS_single.itp"
+#include "../../solvent/water_corrected.itp"
+
+[ system ]
+CLS single chain in water
+
+[ molecules ]
+; Compound        #mols
+CLS             1
+SOL             1500
