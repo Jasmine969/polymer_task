@@ -1,7 +1,7 @@
 """Convert Task 3 PackMol PDB outputs into GROMACS GRO coordinate files.
 
 PackMol writes coordinates as PDB files.  GROMACS can often read PDB directly,
-but using GRO files keeps this homework workflow consistent with the existing
+but using GRO files keeps this workflow consistent with the existing
 single-chain coordinate files.  This script expects the PackMol outputs to be:
 
 * ``systems/water/initial.pdb``
@@ -13,8 +13,7 @@ the known Task 3 molecule order:
 * water system: ``CLS 1 + SOL 1500``
 * mixed system: ``CLS 1 + SOL 1050 + ETH 450``
 
-There are intentionally no command-line arguments.  Run it from the repository
-root after PackMol has created the PDB files:
+Run it from the repository root after PackMol has created the PDB files:
 
     python scripts/task3/packmol_pdb_to_gro.py
 """

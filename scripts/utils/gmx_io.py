@@ -238,3 +238,9 @@ def _replace_first_moleculetype_name(path: Path, molecule_name: str) -> None:
         return
 
     raise ValueError(f"{path} does not contain a [ moleculetype ] data row.")
+
+
+if __name__ == '__main__':
+    struc = pmd.load_file('../../systems/water/initial.pdb')
+    print(struc)
+    save_gro(Path('F:\\polymer_task\\scripts\\utils\\test.gro'), struc)
